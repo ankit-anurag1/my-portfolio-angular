@@ -1,0 +1,20 @@
+.page-3{
+  position: relative;
+}
+
+.page-3 .content {
+  display: inline-block;
+}
+
+.page-3 .content h3 {
+  font-size: 4vh;
+}
+
+.page-3 .content p {
+  font-size: 2.5vh;
+}
+
+.page-3 .content .content-bottom {
+  margin-top : 20vh;
+  text-align: right;
+}

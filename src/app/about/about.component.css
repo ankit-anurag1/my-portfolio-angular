@@ -1,0 +1,52 @@
+.page-2{
+  position: relative;
+}
+
+.page-2 .content {
+  position: relative;
+}
+
+.page-2 .content .content-left {
+  border-right: solid 1px #ccc;
+  padding-left: 2vw;
+  margin-bottom: 4vh;
+}
+
+.page-2 .content h4 {
+  font-size: 4vh;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.page-2 .content p {
+  font-size: 2.5vh;
+}
+
+.page-2 .content .content-right {
+  padding-right: 2vw;
+  padding-left: 40vw;
+  border-left: solid 1px #ccc;
+  text-align: right;
+  margin-bottom: 4vh;
+}
+
+#college-logo {
+  position: absolute;
+  right: 2vw;
+  top: 0;
+  width: 15vw;
+}
+
+#developer-logo {
+  position: absolute;
+  left: 2vw;
+  top: 22vh;
+  width: 15vw;
+}
+
+#intern-logo {
+  position: absolute;
+  right: 2vw;
+  bottom: 0;
+  width: 15vw;
+}

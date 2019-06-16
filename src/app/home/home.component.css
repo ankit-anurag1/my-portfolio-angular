@@ -1,0 +1,57 @@
+.page-1 {
+  position: relative;
+}
+
+.page-1 .content {
+  vertical-align: middle;
+}
+
+.page-1 .content h2 {
+  font-size: 12vh;
+  margin: 0;
+}
+
+.page-1 .content h5 {
+  padding-left: 3vw;
+  font-size: 4vh;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  margin-top: 12vh;
+  text-align: right;
+}
+
+.social-links p {
+  display: inline-block;
+}
+
+.social-links a {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.fb, .insta, .git, .ld {
+  margin-left: 3vw;
+}
+/* 
+.fb {
+  top: 50vh;
+  left: 10vw;
+}
+
+.git {
+  top: 50vh;
+  left: 35vw;
+}
+
+.insta {
+  top: 70vh;
+  left: 28vw;
+}
+
+.ld {
+  top: 70vh;
+  left: 17vw;
+} */
