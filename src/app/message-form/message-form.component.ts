@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,
   Validators } from '@angular/forms'
 
-import { sizeMESSAGES } from '../messages'
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+
+import { sizeMESSAGES, MESSAGES } from '../messages'
 
 @Component({
   selector: 'app-message-form',
@@ -14,10 +16,11 @@ export class MessageFormComponent implements OnInit {
   messageForm : FormGroup;
 
   constructor(
-    private form : FormBuilder
+    private form : FormBuilder,
+    private dialogRef: MatDialogRef<MessageFormComponent>,
     ) {
       this.messageForm = this.form.group({
-        'name' : ['', [
+        'sender' : ['', [
           Validators.pattern('^[a-zA-Z ]+$')
         ]],
         'id' : [sizeMESSAGES + 1],
@@ -33,6 +36,8 @@ export class MessageFormComponent implements OnInit {
   }
 
   onSubmit() : void {
+    this.close();
+    MESSAGES.push(this.messageForm.value);
     console.warn(this.messageForm.value);
     this.messageForm.reset();
   }
@@ -48,6 +53,11 @@ export class MessageFormComponent implements OnInit {
       }
     }
   }
+
+  close() {
+    this.dialogRef.close();
+  }
+  
 
 }
 

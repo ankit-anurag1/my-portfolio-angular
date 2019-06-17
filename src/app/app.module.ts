@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -25,17 +26,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path : '', redirectTo : 'home', pathMatch : 'full'},
       { path : 'home', component : HomeComponent },
       { path : 'about', component : AboutComponent },
       { path : 'messages', component : MessagesComponent },
       { path : 'bye', component : ByeComponent },
-      { path : 'messages/submit', component : MessageFormComponent }
+      // { path : 'messages/submit', component : MessageFormComponent }
     ]),
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MessageFormComponent]
 })
 export class AppModule { }
