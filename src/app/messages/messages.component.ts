@@ -10,18 +10,12 @@ import { MESSAGES } from '../messages'
 export class MessagesComponent implements OnInit {
 
   messages = MESSAGES;
-  isModalVisible : boolean;
 
   constructor() { 
-    this.isModalVisible = false;
   }
 
   ngOnInit() {
     
-  }
-
-  triggerModal(){
-    this.isModalVisible = !this.isModalVisible
   }
 
 }
