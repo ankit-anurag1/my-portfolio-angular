@@ -9,4 +9,4 @@ some additional content and feedback forms. This project is mainly designed to s
   
   
     
-Current status : Currently working on displaying a 'messages' form using Bootstrap modal.
+Current status : Currently working on focus on message element on angular material snackbar-action.

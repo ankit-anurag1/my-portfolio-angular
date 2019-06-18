@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,
-  Validators } from '@angular/forms'
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-
-import { sizeMESSAGES, MESSAGES } from '../messages'
+import { Message } from '../message'
+import { MessagingService } from '../messaging.service'
 
 @Component({
   selector: 'app-message-form',
@@ -18,30 +18,45 @@ export class MessageFormComponent implements OnInit {
   constructor(
     private form : FormBuilder,
     private dialogRef: MatDialogRef<MessageFormComponent>,
+    private messaging: MessagingService,
+    private _snackBar: MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) data
     ) {
       this.messageForm = this.form.group({
         'sender' : ['', [
           Validators.pattern('^[a-zA-Z ]+$')
         ]],
-        'id' : [sizeMESSAGES + 1],
+        'id' : [data.id],
         'email' : ['', [
           Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
         ]],
-        'pubDate' : [Date()],
+        'pubDate' : [data.pubDate],
         'content' : ['']
       })
    }
 
-  ngOnInit(){  
-  }
+  ngOnInit(){ }
 
   onSubmit() : void {
-    this.close();
-    MESSAGES.push(this.messageForm.value);
-    console.warn(this.messageForm.value);
+    this.addMessage(this.messageForm.value);
     this.messageForm.reset();
   }
   
+  addMessage(message: Message){
+    console.log("Sending message : " + message.content);
+    this.messaging.addMessage(message)
+      .subscribe(res => {
+        this.dialogRef.close({ 'message' : res });
+        // console.log("Message sent!");
+        this.openSnackBar();
+      },
+      err => {
+        console.log(err);
+        this.close();
+      }
+    );
+  }
+
   nameValidate(event) {
     let keyAscii = event.which;
     if((keyAscii >= 33 && keyAscii <= 64) || (keyAscii >= 91 && keyAscii <= 96) || keyAscii > 122){
@@ -54,14 +69,13 @@ export class MessageFormComponent implements OnInit {
     }
   }
 
+  openSnackBar() {
+    this._snackBar.open("Message sent!", "Show", {
+      duration: 2000,
+    });
+  }
+
   close() {
     this.dialogRef.close();
   }
-  
-
 }
-
-
-
-
-

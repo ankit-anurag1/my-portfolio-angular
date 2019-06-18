@@ -1,32 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material";
 
-import { MESSAGES } from '../messages'
+import { Message } from '../message'
+import { MessagingService } from '../messaging.service'
 import { MessageFormComponent } from '../message-form/message-form.component';
-
-
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
-
 export class MessagesComponent implements OnInit {
 
-  messages = MESSAGES;
+  messages : Message[];
+  lengthMessages : number;
+  constructor(
+    private dialog: MatDialog,
+    private messaging: MessagingService 
+  ) {}
 
-  constructor(private dialog: MatDialog) { }
-
-  ngOnInit() {  }
+  ngOnInit() {
+    this.getMessages();
+  }
 
   openDialog() {
-
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.autoFocus = true;
     dialogConfig.minWidth = "40vw";
-
-    this.dialog.open(MessageFormComponent, dialogConfig);
+    dialogConfig.data = {
+      id : this.messaging.lengthMessages,
+      pubDate : Date(),
+    }
+    this.dialog.open(MessageFormComponent, dialogConfig)
+      .afterClosed().subscribe(result => {
+        // console.log(result.message);
+        this.messages.push(result.message);
+    })
   }
+
+  getMessages(){
+    this.messaging.getMessages().subscribe(data => {
+      this.messages =  data;
+    })
+  }
+
 }
