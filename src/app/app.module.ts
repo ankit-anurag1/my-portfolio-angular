@@ -14,6 +14,7 @@ import { ByeComponent } from './bye/bye.component';
 import { MessagesComponent } from './messages/messages.component';
 import { MessageFormComponent } from './message-form/message-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReversePipe } from './reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AboutComponent,
     ByeComponent,
     MessagesComponent,
-    MessageFormComponent
+    MessageFormComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,

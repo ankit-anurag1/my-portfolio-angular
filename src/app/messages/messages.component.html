@@ -2,6 +2,42 @@
   Got a message to drop?
   <span (click)="openDialog()" class="fas fa-comment-dots" ></span>
 </div>
+
+
+<h3>Recent messages ...</h3>
+
+<div class="row align-items-center">
+  <div *ngFor="let message of messagesRecent | reverse" class="col-12 col-md-6 col-lg-4">
+    <div class="card my-5" attr.id="message-{{message.id}}">
+      <div class="card-body">
+        <div class="card-title">
+          From, {{ message.sender }}
+        </div>
+        <div class="card-text">
+          <p>{{ message.content }}</p>
+          <hr />
+          <p class="text-right">{{ message.pubDate | date }}</p> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<hr />
+<br />
+
+<div class="row justify-content-between">
+  <div class="col-12 col-md-4">
+    <h3>All messages ...</h3>
+  </div>
+  <!-- <div class="col-12 col-md-2" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" routerLink="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" routerLink="#">Next</a></li>
+    </ul>
+  </div> -->
+  </div>
 <div class="row align-items-center">
   <div *ngFor="let message of messages" class="col-12 col-md-6 col-lg-4">
     <div class="card my-5" attr.id="message-{{message.id}}">
@@ -18,3 +54,12 @@
     </div>
   </div>
 </div>
+
+<!-- <div class="row justify-content-end">
+  <div class="col-12 col-md-2" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" routerLink="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" routerLink="#">Next</a></li>
+    </ul>
+  </div>
+</div> -->

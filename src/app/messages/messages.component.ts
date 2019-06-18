@@ -13,6 +13,7 @@ import { MessageFormComponent } from '../message-form/message-form.component';
 export class MessagesComponent implements OnInit {
 
   messages : Message[];
+  messagesRecent : Message[];
   lengthMessages : number;
   constructor(
     private dialog: MatDialog,
@@ -35,12 +36,14 @@ export class MessagesComponent implements OnInit {
       .afterClosed().subscribe(result => {
         // console.log(result.message);
         this.messages.push(result.message);
+        this.messagesRecent = this.messages.slice(-3,);
     })
   }
 
   getMessages(){
     this.messaging.getMessages().subscribe(data => {
       this.messages =  data;
+      this.messagesRecent = this.messages.slice(-3,);
     })
   }
 
